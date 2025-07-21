@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="d-flex">
+        <article class="text m-auto bg-body-tertiary p-4">
+            <div class="conteudo ">
+                {{ post.content|safe }}
+            </div>
+        </article>
+    </div>
+
+{% endblock %}

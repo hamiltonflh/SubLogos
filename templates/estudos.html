@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main class="estudos m-auto p-4">
+        <h1 class="titulo m-auto p-4">Estudos</h1>
+        <a href="#" class="btn custom-btn mb-4" data-bs-toggle="modal" data-bs-target="#novoEstudoModal">Adicionar Novo estudo</a>
+            {% for estudo in estudos %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ estudo.title }}</h5>
+                        <p class="card-text">{{ estudo.resume }}</p>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#editarEstudoModal{{ estudo.id }}" class="btn custom-btn">Editar</a>
+                        <a href="/estudos/deletar/{{ estudo.id }}" class="btn custom-btn">Deletar</a>
+                    </div>
+                </div>
+                <!-- Modal Editar Estudo para cada estudo -->
+                <div class="modal fade" id="editarEstudoModal{{ estudo.id }}" tabindex="-1" aria-labelledby="editarEstudoModalLabel{{ estudo.id }}" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <form method="POST" action="{{ url_for('editar_estudo', id=estudo.id) }}">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="editarEstudoModalLabel{{ estudo.id }}">Editar Estudo</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="mb-3">
+                            <label for="title{{ estudo.id }}" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="title{{ estudo.id }}" name="title" required value="{{ estudo.title }}">
+                          </div>
+                          <div class="mb-3">
+                            <label for="resume{{ estudo.id }}" class="form-label">Resumo</label>
+                            <input type="text" class="form-control" id="resume{{ estudo.id }}" name="resume" required value="{{ estudo.resume }}">
+                          </div>
+                          <div class="mb-3">
+                            <label for="content{{ estudo.id }}" class="form-label">Conteúdo</label>
+                            <textarea class="form-control" id="content{{ estudo.id }}" name="content" rows="4" required>{{ estudo.content }}</textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn custom-btn" data-bs-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn custom-btn">Salvar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+    </main>
+
+    <!-- Modal Estudos -->
+<!-- O modal de edição individual agora está dentro do loop de estudos -->
+
+
+<div class="modal fade" id="editarEstudoModal" tabindex="-1" aria-labelledby="editarEstudoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST" action="{{ url_for('editar_estudo', id=estudo.id) }}">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarEstudoModalLabel">Editar Estudo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" class="form-control" id="title" name="title" required value="{{ estudo.title }}">
+          </div>
+          <div class="mb-3">
+            <label for="resume" class="form-label">Resumo</label>
+            <input type="text" class="form-control" id="resume" name="resume" required value="{{ estudo.resume }}">
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label">Conteúdo</label>
+            <textarea class="form-control" id="content" name="content" rows="4" required>{{ estudo.content }}</textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn custom-btn" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn custom-btn">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section class="secao d-flex mb-5">
+        <h1 class="m-auto p-3">Todos os Estudos</h1>
+        <div class="container-fluid p-5">
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="width: 100%;min-height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <p class="card-text">{{ post.resume }}</p>
+                                <a href="/post/{{ post.id }}" class="btn custom-btn">Ler Post</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

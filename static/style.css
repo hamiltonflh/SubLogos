@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+
+.navbar {
+    background-color: #181715;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.nav-link {
+    color: white;
+}
+
+
+.nav-link:hover {
+    background-color: #FFD600;
+    transition: .5s;
+    color: black;
+    border-radius: 1rem;
+}
+
+.secao {
+    margin: auto;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F5F5F5;
+}
+
+.text {
+    max-width: 1000px;
+    
+}
+
+.estudos {
+    max-width: 1000px;
+    justify-content: center;
+}
+
+.custom-btn {
+    background-color: #FFD600;
+}
+
+.btn:focus {
+    background-color: #000000;
+}
