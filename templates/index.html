@@ -9,6 +9,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="card" style="width: 100%;min-height: 200px;">
                             <div class="card-body">
+                                <img src="{{ post.image }}" alt="{{ post.title }}" class="card-img-top mb-3" style="max-height: 180px; object-fit: cover;">
                                 <h5 class="card-title">{{ post.title }}</h5>
                                 <p class="card-text">{{ post.resume }}</p>
                                 <a href="/post/{{ post.id }}" class="btn custom-btn">Ler Post</a>

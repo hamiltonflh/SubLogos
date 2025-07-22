@@ -23,30 +23,45 @@ def post(id):
     return render_template("postlayout.html", post=post, title=post.title)
 
 
+@app.route('/estudos_user')
+def estudos_user():
+    estudos = Estudos.query.all()
+    return render_template('estudos_user.html', estudos=estudos)
+
+
+
+@app.route('/cadastro')
+def cadastro():
+    estudos = Estudos.query.all()
+    produtos = Product.query.all()
+    return render_template('cadastro.html', estudos=estudos, produtos=produtos)
+
+
 @app.route('/estudos')
 def estudos():
     estudos = Estudos.query.all()
     return render_template("estudos.html", estudos = estudos)
 
 
-@app.route('/estudos/editar/<int:id>', methods=['GET', 'POST'])
-def editar_estudos(id):
+@app.route('/estudos/editar/<int:id>', methods=['POST'])
+def editar_estudo(id):
     estudo = Estudos.query.get(id)
-    if request.method == 'POST':
-        estudo.title = request.form['title']
-        estudo.content = request.form['content']
-        estudo.resume = request.form['resume']
+    estudo.title = request.form['title']
+    estudo.content = request.form['content']
+    estudo.resume = request.form['resume']
+    estudo.image = request.form['image']
 
-        db.session.add(estudo)
-        db.session.commit()
+    db.session.add(estudo)
+    db.session.commit()
     return redirect(url_for('estudos'))
 
-@app.route('/estudos/novo', methods=['GET', 'POST'])
+@app.route('/estudos/novo', methods=['POST'])
 def novo_estudo():
     estudo = Estudos(
         title = request.form['title'],
         content = request.form['content'],
         resume = request.form['resume'],
+        image = request.form['image']
     )
     db.session.add(estudo)
     db.session.commit()

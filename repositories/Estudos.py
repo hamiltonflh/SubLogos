@@ -5,5 +5,6 @@ class Estudos(db.Model):
     title = db.Column(db.String(100), unique=True, nullable=False)
     content = db.Column(db.String(), nullable=False)
     resume = db.Column(db.String(), nullable=False)
+    image = db.Column(db.String(), nullable=False)
 
 

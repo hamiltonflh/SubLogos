@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main class="estudos m-auto p-4">
+        <h1 class="titulo m-auto p-4">Estudos</h1>
+        <a href="#" class="btn custom-btn mb-4" data-bs-toggle="modal" data-bs-target="#novoEstudoModal">Adicionar Novo estudo</a>
+            {% for estudo in estudos %}
+                <div class="card mb-3" style="width: 100%; min-height: 180px;">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-3">
+                            <img src="{{ estudo.image }}" alt="{{ estudo.title }}" class="img-fluid rounded-start" style="max-height: 140px; object-fit: cover;">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ estudo.title }}</h5>
+                                <p class="card-text">{{ estudo.resume }}</p>
+                                <a href="/post/{{ estudo.id }}" class="btn custom-btn">Ler Post</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </main>
+    
+{% endblock %}

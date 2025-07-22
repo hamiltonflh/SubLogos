@@ -11,6 +11,7 @@
                         <p class="card-text">{{ estudo.resume }}</p>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#editarEstudoModal{{ estudo.id }}" class="btn custom-btn">Editar</a>
                         <a href="/estudos/deletar/{{ estudo.id }}" class="btn custom-btn">Deletar</a>
+                        <a href="/post/{{ estudo.id }}" class="btn custom-btn">Ler Post</a>
                     </div>
                 </div>
                 <!-- Modal Editar Estudo para cada estudo -->
@@ -35,6 +36,10 @@
                             <label for="content{{ estudo.id }}" class="form-label">Conteúdo</label>
                             <textarea class="form-control" id="content{{ estudo.id }}" name="content" rows="4" required>{{ estudo.content }}</textarea>
                           </div>
+                          <div class="mb-3">
+                            <label for="image" class="form-label">Imagem</label>
+                            <input type="text" class="form-control" id="image" name="image" required placeholder="Cole o link da imagem aqui">
+                        </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn custom-btn" data-bs-dismiss="modal">Cancelar</button>
@@ -51,26 +56,30 @@
 <!-- O modal de edição individual agora está dentro do loop de estudos -->
 
 
-<div class="modal fade" id="editarEstudoModal" tabindex="-1" aria-labelledby="editarEstudoModalLabel" aria-hidden="true">
+<div class="modal fade" id="novoEstudoModal" tabindex="-1" aria-labelledby="novoEstudoModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form method="POST" action="{{ url_for('editar_estudo', id=estudo.id) }}">
+      <form method="POST" action="{{ url_for('novo_estudo') }}">
         <div class="modal-header">
-          <h5 class="modal-title" id="editarEstudoModalLabel">Editar Estudo</h5>
+          <h5 class="modal-title" id="editarEstudoModalLabel">Novo Estudo</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
             <label for="title" class="form-label">Título</label>
-            <input type="text" class="form-control" id="title" name="title" required value="{{ estudo.title }}">
+            <input type="text" class="form-control" id="title" name="title" required>
           </div>
           <div class="mb-3">
             <label for="resume" class="form-label">Resumo</label>
-            <input type="text" class="form-control" id="resume" name="resume" required value="{{ estudo.resume }}">
+            <input type="text" class="form-control" id="resume" name="resume" required>
           </div>
           <div class="mb-3">
             <label for="content" class="form-label">Conteúdo</label>
-            <textarea class="form-control" id="content" name="content" rows="4" required>{{ estudo.content }}</textarea>
+            <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+          </div>
+             <div class="mb-3">
+            <label for="image" class="form-label">Imagem</label>
+            <input type="text" class="form-control" id="image" name="image" required placeholder="Cole o link da imagem aqui">
           </div>
         </div>
         <div class="modal-footer">

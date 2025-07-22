@@ -42,6 +42,9 @@
     background-color: #FFD600;
 }
 
-.btn:focus {
-    background-color: #000000;
+
+.custom-btn:hover {
+    background-color: black;
+    color: white;
+    transition: .5s;
 }
