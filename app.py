@@ -12,7 +12,8 @@ db.init_app(app)
 @app.route('/')
 def index():
     todos_estudos = Estudos.query.all()
-    return render_template("index.html", posts=todos_estudos, title="Bíblia em mim | Home")
+    products = Product.query.all()
+    return render_template("index.html", posts=todos_estudos, products=products, title="Bíblia em mim | Home")
 
 
 
@@ -37,6 +38,8 @@ def cadastro():
     return render_template('cadastro.html', estudos=estudos, produtos=produtos)
 
 
+
+#CRUD estudos
 @app.route('/estudos')
 def estudos():
     estudos = Estudos.query.all()
@@ -83,12 +86,52 @@ def store():
     return render_template("store_index.html")
 
 
-@app.route('/store/<int:productid>')
-def store_product(product_id):
-    product = Product.query.get(product_id)
-    if product is None:
-        return "Produto não encontrado", 404
-    return render_template("store_product", product=product)
+
+
+#CRUD Products
+@app.route('/products', methods=['GET'])
+def products():
+    products = Product.query.all()
+    return render_template('products.html', products=products)
+
+
+
+@app.route('/products/novo', methods=['GET','POST'])
+def new_product():
+    product = Product(
+        name = request.form['name'],
+        author = request.form['author'],
+        link = request.form['link'],
+        category = request.form['category']
+    )
+    db.session.add(product)
+    db.session.commit()
+    return redirect(url_for('products'))
+
+
+
+@app.route('/products/edit/<int:id>', methods=['GET', 'POST'])
+def edit_product(id):
+    product = Product.query.get(id)
+    if request.method == 'POST':
+        product.name = request.form['name']
+        product.author = request.form['author']
+        product.link = request.form['link']
+        product.category = request.form['category']
+
+        db.session.add(product)
+        db.session.commit()
+        return redirect(url_for('products'))
+
+
+
+@app.route('/product/delete/<int:id>', methods=['GET', 'POST'])
+def delete_product(id):
+    product = Product.query.get(id)
+    db.session.delete(product)
+    db.session.commit()
+    return redirect(url_for('products'))
+
 
 
 
