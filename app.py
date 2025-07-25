@@ -33,9 +33,14 @@ def estudos_user():
 
 @app.route('/cadastro')
 def cadastro():
-    estudos = Estudos.query.all()
-    produtos = Product.query.all()
     return render_template('cadastro.html', estudos=estudos, produtos=produtos)
+
+
+
+@app.route('/store')
+def store():
+    products = Product.query.all()
+    return render_template("store_index.html", products=products)
 
 
 
@@ -81,9 +86,6 @@ def delete_estudo(id):
 
 
 
-@app.route('/store')
-def store():
-    return render_template("store_index.html")
 
 
 
