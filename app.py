@@ -33,7 +33,7 @@ def estudos_user():
 
 @app.route('/cadastro')
 def cadastro():
-    return render_template('cadastro.html', estudos=estudos, produtos=produtos)
+    return render_template('cadastro.html')
 
 
 
