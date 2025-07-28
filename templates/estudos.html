@@ -38,7 +38,7 @@
                           </div>
                           <div class="mb-3">
                             <label for="image" class="form-label">Imagem</label>
-                            <input type="text" class="form-control" id="image" name="image" required value="{{ estudo.image }}">
+                            <input type="file" class="form-control" id="image" name="image" required value="{{ estudo.image }}">
                         </div>
                         </div>
                         <div class="modal-footer">
@@ -78,8 +78,8 @@
             <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
           </div>
              <div class="mb-3">
-            <label for="image" class="form-label">Imagem</label>
-            <input type="text" class="form-control" id="image" name="image" required placeholder="Cole o link da imagem aqui">
+            <label for="form-label">Upload da Imagem</label>
+            <input type="file" name="image" id="image" class="form-control">
           </div>
         </div>
         <div class="modal-footer">
